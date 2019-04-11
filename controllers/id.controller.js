@@ -1,4 +1,4 @@
-const USN = require('/home/rahulmk8055/smart_attendance/models/id.model');
+const mine = require('/home/rahulmk8055/smart_attendance/models/id.model');
 
 //Simple version, without validation or sanitation
 // var id_name = {};
@@ -7,7 +7,7 @@ exports.test = function (req, res) {
 };
 
 exports.enroll = function (req, res) {
-    let id_name_new = new USN(
+    let id_name_new = new mine(
         {
             name: req.body.name,
             id: req.body.id,
