@@ -6,7 +6,7 @@ exports.test = function (req, res) {
     res.send('Greetings from the Test controller!');
 };
 
-exports.enroll = function (req, res) {
+exports.enroll = function (req, res , next) {
     let id_name_new = new mine(
         {
             name: req.body.name,

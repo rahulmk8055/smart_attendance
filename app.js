@@ -4,6 +4,10 @@ var request = require('request');
 
 var mqtt = require('mqtt')
 var client  = mqtt.connect('mqtt://192.168.31.140:1883')
+
+var Api_Client = require('node-rest-client').Client;
+ 
+var api_client = new Api_Client();
 // client.on('connect', function () {
 //     client.subscribe('/id/a', function (err) {
 //       if (!err) {
@@ -53,14 +57,27 @@ client.on('message', function (topic, message) {
     //    function (e, r, body) {
     //        console.log(body);
     //    });
-    request.post({
-        headers: {'content-type' : 'application/x-www-form-urlencoded'},
-        url:     'http://localhost/id/enroll',
-        form:    { name: 'Aryabatta', id: finger_id, device: 'a'}
-      }, function(error, response, body){
-        console.log(body);
-      });
-    client.end();
+    // request.post({
+    //     headers: {'content-type' : 'application/x-www-form-urlencoded'},
+    //     url:     'http://localhost/id/enroll',
+    //     form:    { name: 'Aryabatta', id: finger_id, device: 'a'}
+    //   }, function(error, response, body){
+    //     console.log(body);
+    //   });
+    var args = {
+      data: { name: "Aryabatta", id: finger_id, device: "a"},
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }
+  };
+   
+  api_client.post("http://localhost:8000/id/enroll/", args, function (data, response) {
+      // parsed response body as js object
+      // console.log(body);
+      // raw response
+      // console.log(response);
+  });
+
+
+    // client.end();
 })
 
 let port = 8000;
