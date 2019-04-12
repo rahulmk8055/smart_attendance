@@ -9,4 +9,4 @@ let ProductSchema = new Schema({
 
 
 // Export the model
-module.exports = mongoose.model('mine', ProductSchema);
+module.exports = mongoose.model('finger', ProductSchema);

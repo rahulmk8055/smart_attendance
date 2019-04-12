@@ -11,5 +11,6 @@ router.get('/test', id_name.test);
 
 router.post('/enroll', id_name.enroll);
 
+router.post('/check', id_name.check);
 
 module.exports = router;

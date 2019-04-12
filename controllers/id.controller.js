@@ -1,4 +1,4 @@
-const mine = require('/home/rahulmk8055/smart_attendance/models/id.model');
+const finger = require('/home/rahulmk8055/smart_attendance/models/id.model');
 
 //Simple version, without validation or sanitation
 // var id_name = {};
@@ -7,7 +7,7 @@ exports.test = function (req, res) {
 };
 
 exports.enroll = function (req, res , next) {
-    let id_name_new = new mine(
+    let id_name_new = new finger(
         {
             name: req.body.name,
             id: req.body.id,
@@ -23,4 +23,19 @@ exports.enroll = function (req, res , next) {
         }
         res.send('Name and id stored sucessfully');
     })
+};
+
+exports.check = function(req, res) {
+// res.send("hello check");
+ var id = req.body.id;
+ var device = req.body.device;
+//  var name = "hello";
+ finger.find({id : id}, function (err, docs) {
+     console.log(docs);
+    //  var name = docs[0].name;
+    //  res.send(name) ;
+ })
+//  res.send(name)
+
+
 };
