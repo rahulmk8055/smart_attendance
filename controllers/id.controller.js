@@ -32,6 +32,13 @@ exports.check = function(req, res) {
 //  var name = "hello";
  finger.find({id : id}, function (err, docs) {
      console.log(docs);
+     try{
+         var name = {name :docs[0].name};
+         res.json(name);
+     }
+     catch(err){
+         console.log("empty");
+     }
     //  var name = docs[0].name;
     //  res.send(name) ;
  })

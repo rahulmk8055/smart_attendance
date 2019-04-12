@@ -33,6 +33,8 @@ app.use('/id', id_names);
 
 client.on('connect', function () {
     client.subscribe('/id/check/a', function (err) {
+      // client.publish('id/in/a','yooo');
+
       if (!err) {
         console.log("Connection to mqtt server sucessful")
       }
@@ -62,13 +64,25 @@ client.on('message', function (topic, message) {
   //     // raw response
   //     // console.log(response);
   // });
+  // client.publish('id/in/a','yooo');
+
   api_client.post("http://localhost:8000/id/check/", args, function (data, response) {
       // parsed response body as js object
       // console.log(body);
       // raw response
       // console.log(response);
+      console.log(data);
+      try{
+        var name = data.name;
+        client.publish('/id/in/a',name);
+
+      }
+      catch(err){
+        console.log('responce_empty');
+      }
   });
 
+  // client.publish('/id/in/a','yooo');
 
     // client.end();
 })
